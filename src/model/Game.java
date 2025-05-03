@@ -4,13 +4,43 @@ import java.util.*;
 
 public class Game {
     private List<Player> players = new ArrayList<>();
-    private boolean gameOver = false;
 
     private int dayCount = 1;
     private int nightCount = 1;
+    private int cooldown;
+
+    public enum Winner {
+        NONE, VILLAGERS, WEREWOLVES
+    }
+
+    public Winner checkWinCondition() {
+        long aliveWolves = players.stream()
+                .filter(p -> p.isAlive() && p.getRole() == Role.WEREWOLF)
+                .count();
+
+        long aliveVillagers = players.stream()
+                .filter(p -> p.isAlive() && (p.getRole() == Role.VILLAGER || p.getRole() == Role.SEER))
+                .count();
+
+        if (aliveWolves == 0) {
+            return Winner.VILLAGERS;
+        } else if (aliveWolves >= aliveVillagers) {
+            return Winner.WEREWOLVES;
+        }
+
+        return Winner.NONE;
+    }
 
     public void addPlayer(String name) {
         players.add(new Player(name));
+    }
+
+    public void setCooldown(int cooldown) {
+        this.cooldown = cooldown;
+    }
+
+    public int getCooldown() {
+        return cooldown;
     }
 
     public void incrementDay() {

@@ -92,19 +92,26 @@ public class Night {
     private void updatePanel(JFrame frame) {
         if (currentIndex >= players.size()) {
             if (!hasSeenAsSeer) {
-                System.out.println("Tous les joueurs sont passés.");
-                IdentityPanel.setVisible(false);
-                VotePanel.setVisible(false);
-                seerPanel.setVisible(false);
 
-                game.incrementNight();
-                frame.setTitle("WereWolf - " + Phase.Day + " " + game.getCountDay());
+                Game.Winner result = game.checkWinCondition();
+                if (result != Game.Winner.NONE) {
+                    goToFinishScreen(result);
+                    return;
+                } else {
+                    IdentityPanel.setVisible(false);
+                    VotePanel.setVisible(false);
+                    seerPanel.setVisible(false);
 
-                Day day = new Day(game, frame);
-                frame.setContentPane(day.getPanel());
-                frame.revalidate();
-                frame.repaint();
-                return;
+                    game.incrementNight();
+                    frame.setTitle("WereWolf - " + Phase.Day + " " + game.getCountDay());
+
+                    Day day = new Day(game, frame);
+                    frame.setContentPane(day.getPanel());
+                    frame.revalidate();
+                    frame.repaint();
+                    return;
+                }
+
 
             } else {
                 IdentityPanel.setVisible(false);
@@ -155,6 +162,18 @@ public class Night {
 
         panel1.revalidate();
         panel1.repaint();
+    }
+
+    private void goToFinishScreen(Game.Winner result) {
+        IdentityPanel.setVisible(false);
+        VotePanel.setVisible(false);
+        seerPanel.setVisible(false);
+
+        frame.setTitle("WereWolf - " + Phase.Finished);
+        Finish finish = new Finish(game, frame);
+        frame.setContentPane(finish.getPanel());
+        frame.revalidate();
+        frame.repaint();
     }
 
 

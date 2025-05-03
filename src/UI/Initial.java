@@ -22,10 +22,13 @@ public class Initial {
         button1.addActionListener(e -> {
             Game game = new Game();
             int nbPlayers = (int) spinner1.getValue();
+            int cooldown = (int) spinner2.getValue();
 
             for (int i = 1; i <= nbPlayers; i++) {
                 game.addPlayer("Joueur " + i);
             }
+
+            game.setCooldown(cooldown);
 
             assignrole(game);
 
