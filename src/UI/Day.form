@@ -116,7 +116,7 @@
                   <enabled value="true"/>
                   <font size="22"/>
                   <horizontalAlignment value="0"/>
-                  <text value="Label"/>
+                  <text value="Qui expulser du village?"/>
                 </properties>
               </component>
             </children>

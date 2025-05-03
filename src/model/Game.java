@@ -14,13 +14,9 @@ public class Game {
     }
 
     public Winner checkWinCondition() {
-        long aliveWolves = players.stream()
-                .filter(p -> p.isAlive() && p.getRole() == Role.WEREWOLF)
-                .count();
+        long aliveWolves = players.stream().filter(p -> p.isAlive() && p.getRole() == Role.WEREWOLF).count();
 
-        long aliveVillagers = players.stream()
-                .filter(p -> p.isAlive() && (p.getRole() == Role.VILLAGER || p.getRole() == Role.SEER))
-                .count();
+        long aliveVillagers = players.stream().filter(p -> p.isAlive() && (p.getRole() == Role.VILLAGER || p.getRole() == Role.SEER)).count();
 
         if (aliveWolves == 0) {
             return Winner.VILLAGERS;
