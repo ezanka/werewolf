@@ -6,8 +6,27 @@ public class Game {
     private List<Player> players = new ArrayList<>();
     private boolean gameOver = false;
 
+    private int dayCount = 1;
+    private int nightCount = 1;
+
     public void addPlayer(String name) {
         players.add(new Player(name));
+    }
+
+    public void incrementDay() {
+        dayCount++;
+    }
+
+    public void incrementNight() {
+        nightCount++;
+    }
+
+    public int getCountDay() {
+        return dayCount;
+    }
+
+    public int getCountNight() {
+        return nightCount;
     }
 
     public List<Player> getAlivePlayers() {

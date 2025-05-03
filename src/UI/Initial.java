@@ -1,6 +1,7 @@
 package UI;
 
 import model.Game;
+import model.Phase;
 import model.Role;
 
 import javax.swing.*;
@@ -28,7 +29,9 @@ public class Initial {
 
             assignrole(game);
 
-            Night night = new Night(game.getPlayers());
+            List<model.Player> players = game.getPlayers();
+            Night night = new Night(game, game.getPlayers(), frame);
+            frame.setTitle("WereWolf - " + Phase.Night + " " + game.getCountNight());
             frame.setContentPane(night.getPanel());
             frame.revalidate();
             frame.repaint();
