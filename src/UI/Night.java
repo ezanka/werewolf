@@ -72,9 +72,9 @@ public class Night {
             if (selected != null && !selected.equals("---")) {
                 String voteName = selected.split(" - ")[0];
 
-                if (currentPlayer.getRole() == Role.WEREWOLF) {
+                if (currentPlayer.getRole() == Role.LOUP_GAROU) {
                     handleWerewolfVote(voteName);
-                } else if (currentPlayer.getRole() == Role.SEER) {
+                } else if (currentPlayer.getRole() == Role.VOYANTE) {
                     hasSeenAsSeer = true;
                     handleSeerAction(voteName);
                 }
@@ -82,6 +82,13 @@ public class Night {
                 currentIndex++;
                 isIdentityConfirmed = false;
                 updatePanel(frame);
+            } else {
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "Veuillez choisir un nom valide.",
+                        "Sélection invalide",
+                        JOptionPane.WARNING_MESSAGE
+                );
             }
         });
 
@@ -144,15 +151,15 @@ public class Night {
             comboBox1.addItem("---");
             for (Player p : players) {
                 if (!p.equals(currentPlayer) && p.isAlive()) {
-                    if (currentPlayer.getRole() == Role.WEREWOLF && p.getRole() != Role.WEREWOLF) {
+                    if (currentPlayer.getRole() == Role.LOUP_GAROU && p.getRole() != Role.LOUP_GAROU) {
                         comboBox1.addItem(p.getName() + " - " + p.getVoie() + " voie(s) contre lui.");
-                    } else if (currentPlayer.getRole() == Role.SEER && p.isAlive()) {
+                    } else if (currentPlayer.getRole() == Role.VOYANTE && p.isAlive()) {
                         if (p.isRevealed()) {
                             comboBox1.addItem(p.getName() + " - " + p.getRole());
                         } else {
                             comboBox1.addItem(p.getName());
                         }
-                    } else if (currentPlayer.getRole() == Role.VILLAGER) {
+                    } else if (currentPlayer.getRole() == Role.VILLAGEOIS) {
                         comboBox1.addItem(p.getName());
                     }
                 }

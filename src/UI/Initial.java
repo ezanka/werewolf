@@ -65,9 +65,9 @@ public class Initial {
         }
 
         List<Role> roles = new ArrayList<>();
-        for (int i = 0; i < nbWolf; i++) roles.add(Role.WEREWOLF);
-        for (int i = 0; i < nbSeer; i++) roles.add(Role.SEER);
-        for (int i = 0; i < nbVillager; i++) roles.add(Role.VILLAGER);
+        for (int i = 0; i < nbWolf; i++) roles.add(Role.LOUP_GAROU);
+        for (int i = 0; i < nbSeer; i++) roles.add(Role.VOYANTE);
+        for (int i = 0; i < nbVillager; i++) roles.add(Role.VILLAGEOIS);
 
         Collections.shuffle(roles);
 

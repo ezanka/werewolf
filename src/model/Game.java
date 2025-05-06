@@ -14,9 +14,9 @@ public class Game {
     }
 
     public Winner checkWinCondition() {
-        long aliveWolves = players.stream().filter(p -> p.isAlive() && p.getRole() == Role.WEREWOLF).count();
+        long aliveWolves = players.stream().filter(p -> p.isAlive() && p.getRole() == Role.LOUP_GAROU).count();
 
-        long aliveVillagers = players.stream().filter(p -> p.isAlive() && (p.getRole() == Role.VILLAGER || p.getRole() == Role.SEER)).count();
+        long aliveVillagers = players.stream().filter(p -> p.isAlive() && (p.getRole() == Role.VILLAGEOIS || p.getRole() == Role.VOYANTE)).count();
 
         if (aliveWolves == 0) {
             return Winner.VILLAGERS;
@@ -73,8 +73,8 @@ public class Game {
     }
 
     public boolean isGameOver() {
-        long werewolves = players.stream().filter(p -> p.isAlive() && p.getRole() == Role.WEREWOLF).count();
-        long villagers = players.stream().filter(p -> p.isAlive() && p.getRole() != Role.WEREWOLF).count();
+        long werewolves = players.stream().filter(p -> p.isAlive() && p.getRole() == Role.LOUP_GAROU).count();
+        long villagers = players.stream().filter(p -> p.isAlive() && p.getRole() != Role.LOUP_GAROU).count();
         return werewolves == 0 || werewolves >= villagers;
     }
 
