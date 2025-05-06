@@ -47,6 +47,10 @@ public class Day {
     }
 
     private void goToNightPhase(JFrame frame) {
+        for (Player player : game.getAlivePlayers()) {
+            player.setVoie(0);
+        }
+
         game.incrementDay();
         frame.setTitle("WereWolf - " + Phase.Night + " " + game.getCountNight());
 

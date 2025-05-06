@@ -69,8 +69,7 @@ public class Night {
 
         voterButton.addActionListener(e -> {
             String selected = (String) comboBox1.getSelectedItem();
-//          a rajouter dans le if pour faire le vote blanc  && !selected.equals("---")
-            if (selected != null ) {
+            if (selected != null && !selected.equals("---")) {
                 String voteName = selected.split(" - ")[0];
 
                 if (currentPlayer.getRole() == Role.WEREWOLF) {
